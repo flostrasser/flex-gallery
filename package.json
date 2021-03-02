@@ -1,8 +1,8 @@
 {
   "name": "flex-gallery",
-  "version": "0.1.0-beta",
+  "version": "0.1.0-beta.2",
   "description": "A responsive lightbox gallery with flexbox and progressive image loading.",
-  "main": "src/js/flex-gallery.js",
+  "main": "dist/js/flex-gallery.js",
   "style": "src/scss/flex-gallery.scss",
   "repository": {
     "type": "git",
@@ -23,6 +23,15 @@
   },
   "homepage": "https://github.com/flostrasser/flex-gallery#readme",
   "dependencies": {},
-  "devDependencies": {},
-  "scripts": {}
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "sass": "^1.32.8"
+  },
+  "scripts": {
+    "build": "npm run build-js && npm run build-sass",
+    "build-js": "babel src -d dist --presets=@babel/preset-env",
+    "build-sass": "sass src/scss:dist/css"
+  }
 }
