@@ -1,0 +1,28 @@
+{
+  "name": "flex-gallery",
+  "version": "0.1.0-beta",
+  "description": "A responsive lightbox gallery with flexbox and progressive image loading.",
+  "main": "src/js/flex-gallery.js",
+  "style": "src/scss/flex-gallery.scss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flostrasser/flex-gallery.git"
+  },
+  "keywords": [
+    "responsive",
+    "flexbox",
+    "gallery",
+    "lightbox",
+    "progressive",
+    "image"
+  ],
+  "author": "Florian Strasser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flostrasser/flex-gallery/issues"
+  },
+  "homepage": "https://github.com/flostrasser/flex-gallery#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {}
+}
