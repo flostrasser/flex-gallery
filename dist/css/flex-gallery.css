@@ -44,7 +44,7 @@
   right: 0;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  background-image: url("/images/icons/icon-search.svg");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='37' height='37' viewBox='0 0 37 37' fill='none'%3e%3cpath stroke='white' stroke-width='6' stroke-linecap='round' d='M23 23L34 34M26 14.5C26 20.8513 20.8513 26 14.5 26C8.14873 26 3 20.8513 3 14.5C3 8.14873 8.14873 3 14.5 3C20.8513 3 26 8.14873 26 14.5Z'/%3e%3c/svg%3e");
   background-position: center;
   background-size: 1.85rem;
   background-repeat: no-repeat;
@@ -192,11 +192,11 @@
 }
 .lightbox .lightbox-arrow.arrow-left {
   left: 0;
-  background-image: url("/images/icons/icon-chevron-left.svg");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='32' height='53' viewBox='0 0 32 53'%3e%3cpath fill='white' fill-rule='evenodd' clip-rule='evenodd' d='M0 26.5L27.3171 0L32 4.54286L9.36585 26.5L32 48.4571L27.3171 53L0 26.5Z'/%3e%3c/svg%3e");
 }
 .lightbox .lightbox-arrow.arrow-right {
   right: 0;
-  background-image: url("/images/icons/icon-chevron-right.svg");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='32' height='53' viewBox='0 0 32 53'%3e%3cpath fill='white' fill-rule='evenodd' clip-rule='evenodd' d='M32 26.5L4.68293 53L0 48.4571L22.6341 26.5L3.83911e-06 4.54286L4.68293 0L32 26.5Z'/%3e%3c/svg%3e");
 }
 .lightbox .lightbox-slide {
   display: flex;

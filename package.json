@@ -1,6 +1,6 @@
 {
   "name": "flex-gallery",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "description": "A responsive lightbox gallery with flexbox and progressive image loading.",
   "main": "dist/js/flex-gallery.js",
   "style": "src/scss/flex-gallery.scss",
