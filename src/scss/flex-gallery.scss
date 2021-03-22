@@ -1,42 +1,5 @@
-// --------------------------------
-// SVG Icons
-// --------------------------------
-$icon-search: '<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none"><path stroke="white" stroke-width="6" stroke-linecap="round" d="M23 23L34 34M26 14.5C26 20.8513 20.8513 26 14.5 26C8.14873 26 3 20.8513 3 14.5C3 8.14873 8.14873 3 14.5 3C20.8513 3 26 8.14873 26 14.5Z"/></svg>';
-$icon-chevron-left: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="53" viewBox="0 0 32 53"><path fill="white" fill-rule="evenodd" clip-rule="evenodd" d="M0 26.5L27.3171 0L32 4.54286L9.36585 26.5L32 48.4571L27.3171 53L0 26.5Z"/></svg>';
-$icon-chevron-right: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="53" viewBox="0 0 32 53"><path fill="white" fill-rule="evenodd" clip-rule="evenodd" d="M32 26.5L4.68293 53L0 48.4571L22.6341 26.5L3.83911e-06 4.54286L4.68293 0L32 26.5Z"/></svg>';
-
-// used in svg-encode function
-$escaped-characters: (
-    ('<', '%3c'),
-    ('>', '%3e'),
-    ('"', "'"),
-    ('#', '%23'),
-    ('&', '%26'),
-    ('(', '%28'),
-    (')', '%29')
-);
-
-// © Hugo Giraudel
-@function str-replace($string, $search, $replace: '') {
-    $index: str-index($string, $search);
-    @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace +
-            str-replace(
-                str-slice($string, $index + str-length($search)),
-                $search,
-                $replace
-            );
-    }
-    @return $string;
-}
-
-// © Kevin Weber
-@function svg-encode($svg) {
-    @each $char, $encoded in $escaped-characters {
-        $svg: str-replace($svg, $char, $encoded);
-    }
-    @return 'data:image/svg+xml,' + $svg;
-}
+@forward 'vars';
+@use 'vars';
 
 // --------------------------------
 // Gallery
@@ -48,12 +11,12 @@ $escaped-characters: (
 }
 
 .gallery-item {
-    --basis-factor: 220px;
+    --basis-factor: #{vars.$gallery-item-basis-width};
     flex: 1 1 auto;
     flex-basis: var(--basis-factor);
-    margin: 0.5em;
-    max-width: 530px;
-    max-height: 300px;
+    margin: vars.$gallery-item-margin;
+    max-width: vars.$gallery-item-max-width;
+    max-height: vars.$gallery-item-max-height;
     position: relative;
     cursor: pointer;
     overflow: hidden;
@@ -94,11 +57,7 @@ $escaped-characters: (
         left: 0;
         right: 0;
         opacity: 0;
-        background-color: rgba(#000, 0.4);
-        background-image: url(svg-encode($icon-search));
-        background-position: center;
-        background-size: 1.85rem;
-        background-repeat: no-repeat;
+        background: vars.$gallery-item-overlay-bg;
         transition: opacity 250ms;
         z-index: 10;
     }
@@ -112,7 +71,7 @@ $escaped-characters: (
         padding: 1em 0;
         line-height: 1em;
         color: #fff;
-        background-color: rgba(#000, 0.6);
+        background-color: vars.$gallery-item-caption-bg-color;
         transform: translateY(100%);
         transition: transform 250ms;
         z-index: 20;
@@ -150,7 +109,7 @@ $escaped-characters: (
         object-fit: cover;
         min-height: unset;
         text-align: center;
-        background-color: #333;
+        background-color: vars.$gallery-item-thumb-bg-color;
         transition: filter 500ms, transform 500ms;
 
         .ie-fix & {
@@ -178,29 +137,29 @@ $escaped-characters: (
 // --------------------------------
 .lightbox-wrapper {
     display: none;
-    background-color: #2e2e35;
+    background-color: vars.$lightbox-bg-color;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: vars.$lightbox-z-index;
 }
 
 .lightbox {
     display: flex;
     flex-direction: column;
     height: 100%;
-    color: white;
+    color: vars.$lightbox-text-color;
 
     .lightbox-header {
         flex-shrink: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: rgba(#000, 0.3);
-        padding: 1em;
-        font-weight: 600;
+        background-color: vars.$lightbox-header-bg-color;
+        padding: vars.$lightbox-header-padding;
+        font-weight: vars.$lightbox-header-font-weight;
         text-align: center;
 
         & > * {
@@ -225,7 +184,7 @@ $escaped-characters: (
             content: '';
             height: 4px;
             width: 80%;
-            background-color: #fff;
+            background-color: vars.$lightbox-close-color;
         }
 
         &::before {
@@ -267,12 +226,12 @@ $escaped-characters: (
 
         &.arrow-left {
             left: 0;
-            background-image: url(svg-encode($icon-chevron-left));
+            background-image: vars.$lightbox-arrow-left-bg-image;
         }
 
         &.arrow-right {
             right: 0;
-            background-image: url(svg-encode($icon-chevron-right));
+            background-image: vars.$lightbox-arrow-right-bg-image;
         }
     }
 

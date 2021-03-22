@@ -43,11 +43,7 @@
   left: 0;
   right: 0;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='37' height='37' viewBox='0 0 37 37' fill='none'%3e%3cpath stroke='white' stroke-width='6' stroke-linecap='round' d='M23 23L34 34M26 14.5C26 20.8513 20.8513 26 14.5 26C8.14873 26 3 20.8513 3 14.5C3 8.14873 8.14873 3 14.5 3C20.8513 3 26 8.14873 26 14.5Z'/%3e%3c/svg%3e");
-  background-position: center;
-  background-size: 1.85rem;
-  background-repeat: no-repeat;
+  background: rgba(0, 0, 0, 0.4) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='37' height='37' viewBox='0 0 37 37' fill='none'%3e%3cpath stroke='white' stroke-width='6' stroke-linecap='round' d='M23 23L34 34M26 14.5C26 20.8513 20.8513 26 14.5 26C8.14873 26 3 20.8513 3 14.5C3 8.14873 8.14873 3 14.5 3C20.8513 3 26 8.14873 26 14.5Z'/%3e%3c/svg%3e") center/1.85rem no-repeat;
   transition: opacity 250ms;
   z-index: 10;
 }
@@ -157,7 +153,7 @@
   content: "";
   height: 4px;
   width: 80%;
-  background-color: #fff;
+  background-color: white;
 }
 .lightbox .lightbox-close::before {
   transform: rotate(-45deg);
