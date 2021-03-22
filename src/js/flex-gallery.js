@@ -23,7 +23,7 @@ let slideWidth = 0;
 // feature detection
 const isSrcsetSupported = 'srcset' in new Image();
 
-export function flexGallery(_options) {
+export default function flexGallery(_options) {
     Object.assign(options, _options);
     createGallery();
     createLightbox();
