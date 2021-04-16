@@ -8,46 +8,22 @@
 .gallery {
     display: flex;
     flex-wrap: wrap;
+
+    &:after {
+        content: '';
+        flex-grow: 9999999;
+        min-width: vars.$gallery-item-height;
+        height: 0;
+    }
 }
 
 .gallery-item {
-    --basis-factor: #{vars.$gallery-item-basis-width};
     flex: 1 1 auto;
-    flex-basis: var(--basis-factor);
     margin: vars.$gallery-item-margin;
-    max-width: vars.$gallery-item-max-width;
-    max-height: vars.$gallery-item-max-height;
+    height: vars.$gallery-item-height;
     position: relative;
     cursor: pointer;
     overflow: hidden;
-
-    &.item-2x3 {
-        flex-basis: calc(var(--basis-factor) * 0.666);
-    }
-
-    &.item-3x4 {
-        flex-basis: calc(var(--basis-factor) * 0.75);
-    }
-
-    &.item-1x1 {
-        flex-basis: var(--basis-factor);
-    }
-
-    &.item-4x3 {
-        flex-basis: calc(var(--basis-factor) * 1.333);
-    }
-
-    &.item-3x2 {
-        flex-basis: calc(var(--basis-factor) * 1.5);
-    }
-
-    &.item-8x5 {
-        flex-basis: calc(var(--basis-factor) * 1.6);
-    }
-
-    &.item-2x1 {
-        flex-basis: calc(var(--basis-factor) * 2);
-    }
 
     &::after {
         content: '';
@@ -120,16 +96,6 @@
     .placeholder {
         filter: blur(20px);
     }
-}
-
-.lightbox-wrapper {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
 }
 
 // --------------------------------
