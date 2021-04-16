@@ -2,8 +2,6 @@
 
 A responsive lightbox gallery with flexbox and progressive image loading.
 
-> Note: This is an experimental project. Don't use it in production. A better documentation and a stable version is coming soon.
-
 ## Installation
 
 ```sh
@@ -12,7 +10,7 @@ npm install flex-gallery
 
 ## Usage
 
-HTML:
+### HTML:
 
 ```html
 <div class="gallery">
@@ -48,7 +46,17 @@ HTML:
 </div>
 ```
 
-JS:
+| Attribute           | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| src                 | Placeholder until data-src is lazy loaded      |
+| data-src            | Gallery item image                             |
+| data-srcset         | Gallery item srcset                            |
+| data-image          | Lightbox image                                 |
+| data-image-srcset   | Lightbox image srcset                          |
+| data-image-fallback | Lightbox image fallback for unsupported srcset |
+| data-title          | Title for the lightbox header                  |
+
+### JS:
 
 ```js
 import flexGallery from 'flex-gallery';
@@ -56,7 +64,23 @@ import flexGallery from 'flex-gallery';
 flexGallery();
 ```
 
-SCSS:
+or with options:
+
+```js
+flexGallery({
+    transitionDuration: 400,
+    swipingThreshold: 5,
+    slideChangeThreshold: 150,
+});
+```
+
+| Property             | Description                                                       |
+| -------------------- | ----------------------------------------------------------------- |
+| transitionDuration   | Time of a slide transition (in milliseconds)                      |
+| swipingThreshold     | Threshold for a swipe gesture to be recognized as swiping (in px) |
+| slideChangeThreshold | Threshold for a swipe to trigger a slide change (in px)           |
+
+### SCSS:
 
 ```scss
 @use 'flex-gallery';
@@ -113,3 +137,12 @@ $lightbox-header-font-weight: 600 !default;
 $lightbox-arrow-left-bg-image: url(utils.svg-encode($icon-chevron-left-svg)) !default;
 $lightbox-arrow-right-bg-image: url(utils.svg-encode($icon-chevron-right-svg)) !default;
 ```
+
+## TODO
+
+-   Provide method for adding gallery items programmatically
+-   Fire events when opening/closing lightbox and on slide change
+
+## License
+
+MIT
