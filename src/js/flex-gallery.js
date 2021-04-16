@@ -31,7 +31,6 @@ export default function flexGallery(_options) {
 
 // uses progressive image loading
 function createGallery() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
     const galleryThumbs = document.querySelectorAll('.gallery-item .thumb');
 
     const loadThumbnail = target => {
@@ -85,15 +84,18 @@ function createGallery() {
         galleryThumbs.forEach(el => loadThumbnail(el));
     }
 
-    galleryItems.forEach(item => item.addEventListener('click', e => {
-        const currentTarget = e.currentTarget;
+    const galleries = document.querySelectorAll('.gallery');
 
-        const currentGallery = currentTarget.closest('.gallery');
-        const itemIndex = Array.from(galleryItems).indexOf(e.currentTarget);
+    galleries.forEach(gallery => {
+        const currentGalleryItems = gallery.querySelectorAll('.gallery-item');
 
-        openLightbox(currentGallery, itemIndex);
-        initSlides();
-    }));
+        currentGalleryItems.forEach(item => item.addEventListener('click', e => {
+            const itemIndex = Array.from(currentGalleryItems).indexOf(e.currentTarget);
+
+            openLightbox(gallery, itemIndex);
+            initSlides();
+        }));
+    });
 }
 
 function openLightbox(currentGallery, targetIndex) {

@@ -41,7 +41,6 @@ function flexGallery(_options) {
 
 
 function createGallery() {
-  var galleryItems = document.querySelectorAll('.gallery-item');
   var galleryThumbs = document.querySelectorAll('.gallery-item .thumb');
 
   var loadThumbnail = function loadThumbnail(target) {
@@ -94,13 +93,15 @@ function createGallery() {
     });
   }
 
-  galleryItems.forEach(function (item) {
-    return item.addEventListener('click', function (e) {
-      var currentTarget = e.currentTarget;
-      var currentGallery = currentTarget.closest('.gallery');
-      var itemIndex = Array.from(galleryItems).indexOf(e.currentTarget);
-      openLightbox(currentGallery, itemIndex);
-      initSlides();
+  var galleries = document.querySelectorAll('.gallery');
+  galleries.forEach(function (gallery) {
+    var currentGalleryItems = gallery.querySelectorAll('.gallery-item');
+    currentGalleryItems.forEach(function (item) {
+      return item.addEventListener('click', function (e) {
+        var itemIndex = Array.from(currentGalleryItems).indexOf(e.currentTarget);
+        openLightbox(gallery, itemIndex);
+        initSlides();
+      });
     });
   });
 }
