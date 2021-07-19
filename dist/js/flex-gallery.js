@@ -174,13 +174,14 @@ function createLightbox() {
   slidesWrapper.append(prevSlide, currentSlide, nextSlide); // Image
 
   var lightboxImage = createElement('img', 'lightbox-image', {
+    hidden: true,
     draggable: false
   });
   currentSlide.append(lightboxImage);
   prevSlide.append(lightboxImage.cloneNode());
   nextSlide.append(lightboxImage.cloneNode()); // Loading Spinner
 
-  var spinner = '<div class="spinner spinner-border" role="status"><span class="sr-only">Loading...</span></div>';
+  var spinner = '<div class="lightbox-spinner" role="status" hidden><span>Loading...</span></div>';
   currentSlide.insertAdjacentHTML('beforeend', spinner);
   prevSlide.insertAdjacentHTML('beforeend', spinner);
   nextSlide.insertAdjacentHTML('beforeend', spinner); // Arrows
@@ -397,14 +398,14 @@ function updateLightboxHeader(index) {
 function loadImage(targetSlide, index) {
   index = getLoopedIndex(index);
   var currentImage = targetSlide.querySelector('.lightbox-image');
-  var spinner = targetSlide.querySelector('.spinner');
+  var spinner = targetSlide.querySelector('.lightbox-spinner');
   var src = isSrcsetSupported ? images[index].src : images[index].srcFallback;
   var srcset = images[index].srcset;
   var tempImage = new Image();
   currentImage.setAttribute('src', '');
   currentImage.setAttribute('srcset', '');
-  hide(currentImage);
-  show(spinner);
+  currentImage.hidden = true;
+  spinner.hidden = false;
 
   if (isSrcsetSupported && srcset) {
     tempImage.srcset = srcset;
@@ -419,8 +420,8 @@ function loadImage(targetSlide, index) {
       currentImage.setAttribute('src', src);
     }
 
-    hide(spinner);
-    show(currentImage);
+    spinner.hidden = true;
+    currentImage.hidden = false;
     currentImage.removeEventListener('load', loadImageHandler);
   };
 
@@ -474,15 +475,6 @@ function fadeOut(element) {
       }
     }, 50);
   });
-}
-
-function show(element) {
-  var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'block';
-  element.style.display = display;
-}
-
-function hide(element) {
-  element.style.display = 'none';
 }
 
 function createElement(type, className, attributesObj) {
