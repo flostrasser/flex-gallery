@@ -80,8 +80,10 @@
 
     .thumb {
         display: inline-block;
-        max-height: 100%;
+        max-width: 100%;
         min-width: 100%;
+        height: 100%;
+        width: auto;
         object-fit: cover;
         text-align: center;
         background-color: vars.$gallery-item-thumb-bg-color;
