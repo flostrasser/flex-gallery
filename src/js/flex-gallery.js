@@ -143,7 +143,8 @@ function showInitialImage(index) {
 // ------------------------------ //
 function createLightbox() {
     // lightbox & wrapper
-    lightboxWrapper = createElement('div', 'lightbox-wrapper');
+    lightboxWrapper = document.querySelector('.lightbox-wrapper') || createElement('div', 'lightbox-wrapper');
+    removeChildren(lightboxWrapper);
     lightbox = createElement('div', 'lightbox');
 
     // Header
@@ -494,6 +495,12 @@ function createElement(type, className, attributesObj) {
     }
     for (const attrName in attributesObj) element.setAttribute(attrName, attributesObj[attrName]);
     return element;
+}
+
+function removeChildren(parentEl) {
+    while (parentEl.firstChild) {
+        parentEl.removeChild(parentEl.lastChild);
+    }
 }
 
 // Re-maps a number from one range to another.
