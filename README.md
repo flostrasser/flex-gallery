@@ -1,6 +1,8 @@
 # flex-gallery
 
-A responsive lightbox gallery with flexbox and progressive image loading.
+>A responsive lightbox gallery with flexbox and progressive image loading.
+
+<img src="preview.png" width="498" alt="preview.png">
 
 ## Installation
 
