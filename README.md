@@ -1,5 +1,7 @@
 # flex-gallery
 
+[![npm version](https://badge.fury.io/js/flex-gallery.svg)](https://badge.fury.io/js/flex-gallery)
+
 >A responsive lightbox gallery with flexbox and progressive image loading.
 
 <img src="preview.png" width="498" alt="preview.png">
