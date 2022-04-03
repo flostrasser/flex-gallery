@@ -3,6 +3,7 @@
 // --------------------------------
 
 // used in svg-encode function
+// prettier-ignore
 $escaped-characters: (
     ('<', '%3c'),
     ('>', '%3e'),
@@ -14,23 +15,19 @@ $escaped-characters: (
 );
 
 // © Hugo Giraudel
-@function str-replace($string, $search, $replace: '') {
-    $index: str-index($string, $search);
-    @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace +
-            str-replace(
-                str-slice($string, $index + str-length($search)),
-                $search,
-                $replace
-            );
-    }
-    @return $string;
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
 }
 
 // © Kevin Weber
 @function svg-encode($svg) {
-    @each $char, $encoded in $escaped-characters {
-        $svg: str-replace($svg, $char, $encoded);
-    }
-    @return 'data:image/svg+xml,' + $svg;
+  @each $char, $encoded in $escaped-characters {
+    $svg: str-replace($svg, $char, $encoded);
+  }
+  @return "data:image/svg+xml," + $svg;
 }

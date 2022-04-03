@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/flex-gallery.svg)](https://badge.fury.io/js/flex-gallery)
 
->A responsive lightbox gallery with flexbox and progressive image loading.
+> A responsive lightbox gallery with flexbox and progressive image loading.
 
 <img src="preview.png" width="498" alt="preview.png">
 
@@ -18,35 +18,35 @@ npm install flex-gallery
 
 ```html
 <div class="gallery">
-    <div class="gallery-item">
-        <img
-            class="thumb placeholder"
-            src="image-1@placeholder.jpg"
-            data-src="image-1.jpg"
-            data-srcset="image-1.jpg 1x, image-1@2x.jpg 2x"
-            data-image="image-1.jpg"
-            data-image-srcset="image-1.jpg 500w, image-1@2x.jpg 1000w, image-1@3x.jpg 2000w"
-            data-image-fallback="image-1@2x.jpg"
-            data-title="Image 1"
-            alt="Image 1"
-        />
-        <div class="caption" title="Image 1"><span>Image 1</span></div>
-    </div>
+  <div class="gallery-item">
+    <img
+      class="thumb placeholder"
+      src="image-1@placeholder.jpg"
+      data-src="image-1.jpg"
+      data-srcset="image-1.jpg 1x, image-1@2x.jpg 2x"
+      data-image="image-1.jpg"
+      data-image-srcset="image-1.jpg 500w, image-1@2x.jpg 1000w, image-1@3x.jpg 2000w"
+      data-image-fallback="image-1@2x.jpg"
+      data-title="Image 1"
+      alt="Image 1"
+    />
+    <div class="caption" title="Image 1"><span>Image 1</span></div>
+  </div>
 
-    <div class="gallery-item">
-        <img
-            class="thumb placeholder"
-            src="image-2@placeholder.jpg"
-            data-src="image-2.jpg"
-            data-srcset="image-2.jpg 1x, image-2@2x.jpg 2x"
-            data-image="image-2.jpg"
-            data-image-srcset="image-2.jpg 500w, image-2@2x.jpg 1000w, image-2@3x.jpg 2000w"
-            data-image-fallback="image-2@2x.jpg"
-            data-title="Image 2"
-            alt="Image 2"
-        />
-        <div class="caption" title="Image 2"><span>Image 2</span></div>
-    </div>
+  <div class="gallery-item">
+    <img
+      class="thumb placeholder"
+      src="image-2@placeholder.jpg"
+      data-src="image-2.jpg"
+      data-srcset="image-2.jpg 1x, image-2@2x.jpg 2x"
+      data-image="image-2.jpg"
+      data-image-srcset="image-2.jpg 500w, image-2@2x.jpg 1000w, image-2@3x.jpg 2000w"
+      data-image-fallback="image-2@2x.jpg"
+      data-title="Image 2"
+      alt="Image 2"
+    />
+    <div class="caption" title="Image 2"><span>Image 2</span></div>
+  </div>
 </div>
 ```
 
@@ -63,7 +63,7 @@ npm install flex-gallery
 ### JS:
 
 ```js
-import flexGallery from 'flex-gallery';
+import flexGallery from "flex-gallery";
 
 flexGallery();
 ```
@@ -72,9 +72,9 @@ or with options:
 
 ```js
 flexGallery({
-    transitionDuration: 400,
-    swipingThreshold: 5,
-    slideChangeThreshold: 150,
+  transitionDuration: 400,
+  swipingThreshold: 5,
+  slideChangeThreshold: 150,
 });
 ```
 
@@ -87,7 +87,7 @@ flexGallery({
 ### SCSS:
 
 ```scss
-@use 'flex-gallery';
+@use "flex-gallery";
 ```
 
 ## Customize
@@ -95,12 +95,12 @@ flexGallery({
 Example for overriding variables:
 
 ```scss
-@use 'flex-gallery' with (
-    $gallery-item-height: 250px,
-    $gallery-item-overlay-bg: url('path/to/your/custom-bg-image.png'),
-    $lightbox-bg-color: #222,
-    $lightbox-header-bg-color: #999,
-    $lightbox-header-font-weight: 400
+@use "flex-gallery" with (
+  $gallery-item-height: 250px,
+  $gallery-item-overlay-bg: url("path/to/your/custom-bg-image.png"),
+  $lightbox-bg-color: #222,
+  $lightbox-header-bg-color: #999,
+  $lightbox-header-font-weight: 400
 );
 ```
 
@@ -144,8 +144,8 @@ $lightbox-arrow-right-bg-image: url(utils.svg-encode($icon-chevron-right-svg)) !
 
 ## TODO
 
--   Provide method for adding gallery items programmatically
--   Fire events when opening/closing lightbox and on slide change
+- Provide method for adding gallery items programmatically
+- Fire events when opening/closing lightbox and on slide change
 
 ## License
 
