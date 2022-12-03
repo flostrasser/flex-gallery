@@ -4,75 +4,71 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = flexGallery;
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 // options
 var options = {
   swipingThreshold: 5,
   transitionDuration: 400,
   slideChangeThreshold: 150
-}; // lightbox variables
+};
 
+// lightbox variables
 var lightbox;
 var lightboxWrapper;
 var images = [];
 var currentIndex = 0;
-var wasSwiping = false; // slides variables
+var wasSwiping = false;
 
+// slides variables
 var currentSlide;
 var prevSlide;
 var nextSlide;
 var distance = 0;
 var startPos = 0;
-var slideWidth = 0; // feature detection
+var slideWidth = 0;
 
+// feature detection
 var isSrcsetSupported = ('srcset' in new Image());
-
 function flexGallery(_options) {
   Object.assign(options, _options);
   createGallery();
   createLightbox();
-} // uses progressive image loading
+}
 
-
+// uses progressive image loading
 function createGallery() {
   var galleryThumbs = document.querySelectorAll('.gallery-item .thumb');
-
   var loadThumbnail = function loadThumbnail(target) {
     // get the src and srcset from the dataset of the gallery thumb
     var src = target.dataset.src;
-    var srcset = target.dataset.srcset; // create a temporary image
+    var srcset = target.dataset.srcset;
 
-    var tempImage = new Image(); // set the src or srcset of the temp img to preload the actual image file
+    // create a temporary image
+    var tempImage = new Image();
 
+    // set the src or srcset of the temp img to preload the actual image file
     if (isSrcsetSupported && srcset) {
       tempImage.srcset = srcset;
     } else if (src) {
       tempImage.src = src;
-    } // when the temp image is loaded, set the src or srcset to the gallery thumb
+    }
 
-
+    // when the temp image is loaded, set the src or srcset to the gallery thumb
     tempImage.onload = function () {
       if (tempImage.srcset) {
         target.srcset = srcset;
       } else if (src) {
         target.src = src;
       }
-
       target.classList.remove('placeholder');
     };
   };
-
   if ('IntersectionObserver' in window) {
     var observerOptions = {
       rootMargin: '200px 0px'
     };
-
     var handleIntersectionObserver = function handleIntersectionObserver(entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -81,7 +77,6 @@ function createGallery() {
         }
       });
     };
-
     var intersectionObserver = new IntersectionObserver(handleIntersectionObserver, observerOptions);
     galleryThumbs.forEach(function (el) {
       return intersectionObserver.observe(el);
@@ -92,7 +87,6 @@ function createGallery() {
       return loadThumbnail(el);
     });
   }
-
   var galleries = document.querySelectorAll('.gallery');
   galleries.forEach(function (gallery) {
     var currentGalleryItems = gallery.querySelectorAll('.gallery-item');
@@ -105,7 +99,6 @@ function createGallery() {
     });
   });
 }
-
 function openLightbox(currentGallery, targetIndex) {
   fadeIn(lightbox.parentNode);
   images = [];
@@ -123,33 +116,31 @@ function openLightbox(currentGallery, targetIndex) {
   showInitialImage(targetIndex);
   updateLightboxHeader(targetIndex);
 }
-
 function showInitialImage(index) {
   var prevSlide = lightbox.querySelector('.lightbox-slide[data-state="prev"]');
   var currentSlide = lightbox.querySelector('.lightbox-slide[data-state="current"]');
   var nextSlide = lightbox.querySelector('.lightbox-slide[data-state="next"]');
   var currentImage = currentSlide.querySelector('.lightbox-image');
   loadImage(currentSlide, index);
-
   var imageLoadHandler = function imageLoadHandler(e) {
     loadImage(prevSlide, index - 1);
     loadImage(nextSlide, index + 1);
     currentImage.removeEventListener('load', imageLoadHandler);
   };
-
   currentImage.addEventListener('load', imageLoadHandler);
-} // ------------------------------ //
+}
+
+// ------------------------------ //
 // Create Lightbox DOM Elements,
 // Append Lightbox to Body
 // ------------------------------ //
-
-
 function createLightbox() {
   // lightbox & wrapper
   lightboxWrapper = document.querySelector('.lightbox-wrapper') || createElement('div', 'lightbox-wrapper');
   removeChildren(lightboxWrapper);
-  lightbox = createElement('div', 'lightbox'); // Header
+  lightbox = createElement('div', 'lightbox');
 
+  // Header
   var lightboxHeader = createElement('div', 'lightbox-header');
   var lightboxNumbers = createElement('div', 'lightbox-numbers');
   var lightboxTitle = createElement('div', 'lightbox-title');
@@ -158,11 +149,13 @@ function createLightbox() {
     'aria-label': 'Close'
   });
   lightboxHeader.append(lightboxNumbers, lightboxTitle, lightboxClose);
-  lightbox.append(lightboxHeader); // Slides Wrapper
+  lightbox.append(lightboxHeader);
 
+  // Slides Wrapper
   var slidesWrapper = createElement('div', 'lightbox-slides-wrapper');
-  lightbox.append(slidesWrapper); // Slides
+  lightbox.append(slidesWrapper);
 
+  // Slides
   var prevSlide = createElement('div', 'lightbox-slide', {
     'data-state': 'prev'
   });
@@ -172,44 +165,49 @@ function createLightbox() {
   var nextSlide = createElement('div', 'lightbox-slide', {
     'data-state': 'next'
   });
-  slidesWrapper.append(prevSlide, currentSlide, nextSlide); // Image
+  slidesWrapper.append(prevSlide, currentSlide, nextSlide);
 
+  // Image
   var lightboxImage = createElement('img', 'lightbox-image', {
     hidden: true,
     draggable: false
   });
   currentSlide.append(lightboxImage);
   prevSlide.append(lightboxImage.cloneNode());
-  nextSlide.append(lightboxImage.cloneNode()); // Loading Spinner
+  nextSlide.append(lightboxImage.cloneNode());
 
+  // Loading Spinner
   var spinner = '<div class="lightbox-spinner" role="status" hidden><span>Loading...</span></div>';
   currentSlide.insertAdjacentHTML('beforeend', spinner);
   prevSlide.insertAdjacentHTML('beforeend', spinner);
-  nextSlide.insertAdjacentHTML('beforeend', spinner); // Arrows
+  nextSlide.insertAdjacentHTML('beforeend', spinner);
 
+  // Arrows
   lightbox.insertAdjacentHTML('beforeend', '<div class="lightbox-arrow arrow-left"></div>');
-  lightbox.insertAdjacentHTML('beforeend', '<div class="lightbox-arrow arrow-right"></div>'); // Footer
+  lightbox.insertAdjacentHTML('beforeend', '<div class="lightbox-arrow arrow-right"></div>');
 
+  // Footer
   var lightboxFooter = createElement('div', 'lightbox-footer');
-  lightbox.append(lightboxFooter); // append lightbox to body
+  lightbox.append(lightboxFooter);
 
+  // append lightbox to body
   lightboxWrapper.append(lightbox);
   document.body.append(lightboxWrapper);
 }
-
 function addLightboxEventListeners() {
   // close lightbox when clicking on background
   lightbox.querySelectorAll('.lightbox-slide').forEach(function (slide) {
     slide.addEventListener('click', handleSlideClick);
-  }); // close lightbox when clicking on close button
+  });
 
+  // close lightbox when clicking on close button
   var closeBtn = lightbox.querySelector('.lightbox-close');
   closeBtn.addEventListener('click', closeLightbox);
 }
-
 function closeLightbox() {
-  var lightboxImages = lightbox.querySelectorAll('.lightbox-image'); // fade out
+  var lightboxImages = lightbox.querySelectorAll('.lightbox-image');
 
+  // fade out
   fadeOut(lightboxWrapper).then(function () {
     lightboxImages.forEach(function (image) {
       return image.src = '';
@@ -217,24 +215,28 @@ function closeLightbox() {
     lightboxImages.forEach(function (image) {
       return image.srcset = '';
     });
-  }); // remove 'keydown' event handler from document element
+  });
 
+  // remove 'keydown' event handler from document element
   document.documentElement.removeEventListener('keydown', handleLightboxKeyDown);
-} // slide 'click' event handler
+}
 
-
+// slide 'click' event handler
 function handleSlideClick(event) {
   if (event.currentTarget == event.target && !wasSwiping) closeLightbox();
-} // slide 'mousemove' and 'touchmove' event handler
+}
 
-
+// slide 'mousemove' and 'touchmove' event handler
 function handleSlideMove(event) {
   var currentPos = event.type == 'touchmove' ? event.touches[0].clientX : event.clientX;
   distance = currentPos - startPos;
-  if (distance < -options.swipingThreshold || distance > options.swipingThreshold) wasSwiping = true; // move current slide and adjust opacity
+  if (distance < -options.swipingThreshold || distance > options.swipingThreshold) wasSwiping = true;
 
+  // move current slide and adjust opacity
   currentSlide.style.transform = "translateX(".concat(distance, "px)");
-  currentSlide.style.opacity = mapRange(Math.abs(distance), 0, slideWidth, 1, 0); // TODO: reset slide if (currentPos > slideWidth || currentPos < 0)   (not sure if necessary)
+  currentSlide.style.opacity = mapRange(Math.abs(distance), 0, slideWidth, 1, 0);
+
+  // TODO: reset slide if (currentPos > slideWidth || currentPos < 0)   (not sure if necessary)
 
   if (distance < 0) {
     // move next slide and adjust opacity
@@ -245,9 +247,9 @@ function handleSlideMove(event) {
     prevSlide.style.transform = "translateX(".concat(distance - slideWidth, "px)");
     prevSlide.style.opacity = mapRange(Math.abs(distance), 0, slideWidth, 0, 1);
   }
-} // slide 'mousedown' and 'touchstart' event handler
+}
 
-
+// slide 'mousedown' and 'touchstart' event handler
 function handleMouseDownOrTouchStart(event) {
   startPos = event.type == 'touchstart' ? event.touches[0].clientX : event.clientX;
   slideWidth = currentSlide.offsetWidth;
@@ -255,9 +257,9 @@ function handleMouseDownOrTouchStart(event) {
   currentSlide.style.transitionDuration = '0ms';
   currentSlide.addEventListener('mousemove', handleSlideMove);
   currentSlide.addEventListener('touchmove', handleSlideMove);
-} // slide 'mouseup' and 'touchend' event handler
+}
 
-
+// slide 'mouseup' and 'touchend' event handler
 function handleMouseUpOrTouchEnd(event) {
   if (distance < -options.slideChangeThreshold) {
     showNextSlide();
@@ -269,9 +271,9 @@ function handleMouseUpOrTouchEnd(event) {
     resetSlide();
     updateLightbox('current');
   }
-} // lightbox 'keydown' event handler
+}
 
-
+// lightbox 'keydown' event handler
 function handleLightboxKeyDown(event) {
   if (event.key == 'ArrowLeft') {
     showPrevSlide();
@@ -282,20 +284,19 @@ function handleLightboxKeyDown(event) {
   } else if (event.key == 'Escape') {
     closeLightbox();
   }
-} // left arrow 'click' event handler
+}
 
-
+// left arrow 'click' event handler
 function handleClickLeftArrow(event) {
   showPrevSlide();
   updateLightbox('prev');
-} // right arrow 'click' event handler
+}
 
-
+// right arrow 'click' event handler
 function handleClickRightArrow(event) {
   showNextSlide();
   updateLightbox('next');
 }
-
 function transformSlide(slide, translateX, opacity) {
   slide.style.transform = "translateX(".concat(translateX, ")");
   slide.style.opacity = opacity;
@@ -304,25 +305,21 @@ function transformSlide(slide, translateX, opacity) {
   slide.removeEventListener('touchmove', handleSlideMove);
   distance = 0;
 }
-
 function showNextSlide() {
   transformSlide(prevSlide, '100%', 0);
   transformSlide(currentSlide, '-100%', 0);
   transformSlide(nextSlide, '0px', 1);
 }
-
 function showPrevSlide() {
   transformSlide(prevSlide, '0px', 1);
   transformSlide(currentSlide, '100%', 0);
   transformSlide(nextSlide, '-100%', 0);
 }
-
 function resetSlide() {
   transformSlide(prevSlide, '-100%', 0);
   transformSlide(currentSlide, '0px', 1);
   transformSlide(nextSlide, '100%', 0);
 }
-
 function updateLightbox(newSlide) {
   if (newSlide != 'current') removeSlideEventListeners();
   setTimeout(function () {
@@ -331,7 +328,6 @@ function updateLightbox(newSlide) {
       element.style.transitionDuration = '0ms';
     });
     var index;
-
     if (newSlide == 'next') {
       prevSlide.dataset.state = 'next';
       nextSlide.dataset.state = 'current';
@@ -347,55 +343,51 @@ function updateLightbox(newSlide) {
     } else {
       return;
     }
-
     updateSlideVariables();
     addSlideEventListeners();
     updateLightboxHeader(index);
     currentIndex = index;
   }, options.transitionDuration);
 }
-
 function removeSlideEventListeners() {
   // keyboard event listener
-  document.documentElement.removeEventListener('keydown', handleLightboxKeyDown); // arrow buttons event listener
+  document.documentElement.removeEventListener('keydown', handleLightboxKeyDown);
 
+  // arrow buttons event listener
   lightbox.querySelector('.lightbox-arrow.arrow-left').removeEventListener('click', handleClickLeftArrow);
   lightbox.querySelector('.lightbox-arrow.arrow-right').removeEventListener('click', handleClickRightArrow);
 }
-
 function updateSlideVariables() {
   currentSlide = document.querySelector('.lightbox-slide[data-state="current"]');
   prevSlide = document.querySelector('.lightbox-slide[data-state="prev"]');
   nextSlide = document.querySelector('.lightbox-slide[data-state="next"]');
 }
-
 function addSlideEventListeners() {
   // mouse & touch event listener
   currentSlide.addEventListener('mousedown', handleMouseDownOrTouchStart);
   currentSlide.addEventListener('touchstart', handleMouseDownOrTouchStart);
   currentSlide.addEventListener('mouseup', handleMouseUpOrTouchEnd);
   currentSlide.addEventListener('touchend', handleMouseUpOrTouchEnd);
-  currentSlide.addEventListener('touchcancel', handleMouseUpOrTouchEnd); // keyboard event listener
+  currentSlide.addEventListener('touchcancel', handleMouseUpOrTouchEnd);
 
-  document.documentElement.addEventListener('keydown', handleLightboxKeyDown); // click on arrow
+  // keyboard event listener
+  document.documentElement.addEventListener('keydown', handleLightboxKeyDown);
 
+  // click on arrow
   lightbox.querySelector('.lightbox-arrow.arrow-left').addEventListener('click', handleClickLeftArrow);
   lightbox.querySelector('.lightbox-arrow.arrow-right').addEventListener('click', handleClickRightArrow);
 }
-
 function initSlides() {
   updateSlideVariables();
   addSlideEventListeners();
   addLightboxEventListeners();
 }
-
 function updateLightboxHeader(index) {
   index = getLoopedIndex(index);
   var title = images[index].title;
   lightbox.querySelector('.lightbox-title').textContent = title;
   lightbox.querySelector('.lightbox-numbers').textContent = index + 1 + '/' + images.length;
 }
-
 function loadImage(targetSlide, index) {
   index = getLoopedIndex(index);
   var currentImage = targetSlide.querySelector('.lightbox-image');
@@ -407,36 +399,32 @@ function loadImage(targetSlide, index) {
   currentImage.setAttribute('srcset', '');
   currentImage.hidden = true;
   spinner.hidden = false;
-
   if (isSrcsetSupported && srcset) {
     tempImage.srcset = srcset;
   } else {
     tempImage.src = src;
   }
-
   var loadImageHandler = function loadImageHandler(e) {
     if (isSrcsetSupported && srcset) {
       currentImage.setAttribute('srcset', srcset);
     } else {
       currentImage.setAttribute('src', src);
     }
-
     spinner.hidden = true;
     currentImage.hidden = false;
     currentImage.removeEventListener('load', loadImageHandler);
   };
-
   tempImage.addEventListener('load', loadImageHandler);
 }
-
 function getLoopedIndex(index) {
   if (index > images.length - 1) return 0;
   if (index < 0) return images.length - 1;
   return index;
-} // ------------------------------ //
+}
+
+// ------------------------------ //
 // Utility Functions
 // ------------------------------ //
-
 
 function fadeIn(element) {
   var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'block';
@@ -447,25 +435,21 @@ function fadeIn(element) {
     var opacity = 0;
     var timer = setInterval(function () {
       opacity += 50 / ms;
-
       if (opacity >= 1) {
         clearInterval(timer);
         opacity = 1;
         resolve();
       }
-
       element.style.opacity = opacity;
     }, 50);
   });
 }
-
 function fadeOut(element) {
   var ms = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
   return new Promise(function (resolve) {
     var opacity = 1;
     var timer = setInterval(function () {
       opacity -= 50 / ms;
-
       if (opacity <= 0) {
         clearInterval(timer);
         element.style.opacity = 0;
@@ -477,14 +461,11 @@ function fadeOut(element) {
     }, 50);
   });
 }
-
 function createElement(type, className, attributesObj) {
   var element = document.createElement(type);
-
   if (Array.isArray(className)) {
     var _iterator = _createForOfIteratorHelper(className),
-        _step;
-
+      _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var name = _step.value;
@@ -498,21 +479,18 @@ function createElement(type, className, attributesObj) {
   } else if (className) {
     element.classList.add(className);
   }
-
   for (var attrName in attributesObj) {
     element.setAttribute(attrName, attributesObj[attrName]);
   }
-
   return element;
 }
-
 function removeChildren(parentEl) {
   while (parentEl.firstChild) {
     parentEl.removeChild(parentEl.lastChild);
   }
-} // Re-maps a number from one range to another.
+}
 
-
+// Re-maps a number from one range to another.
 function mapRange(value, fromIn, toIn, fromOut, toOut) {
   return fromOut + (toOut - fromOut) * (value - fromIn) / (toIn - fromIn);
 }

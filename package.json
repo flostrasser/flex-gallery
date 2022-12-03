@@ -29,10 +29,10 @@
   },
   "homepage": "https://github.com/flostrasser/flex-gallery#readme",
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.8",
-    "@babel/preset-env": "^7.16.11",
-    "sass": "^1.49.11"
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "sass": "^1.56.1"
   },
   "scripts": {
     "build": "npm run build-js && npm run build-sass",
