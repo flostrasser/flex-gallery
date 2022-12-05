@@ -8,6 +8,7 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  gap: vars.$gallery-gap;
 
   &:after {
     content: "";
@@ -19,7 +20,6 @@
 
 .gallery-item {
   flex-grow: 1;
-  margin: vars.$gallery-item-margin;
   height: vars.$gallery-item-height;
   position: relative;
   cursor: pointer;
@@ -129,7 +129,7 @@
     font-weight: vars.$lightbox-header-font-weight;
     text-align: center;
 
-    & > * {
+    &>* {
       opacity: 0.75;
     }
   }
@@ -249,7 +249,7 @@
       }
     }
 
-    & > * {
+    &>* {
       position: absolute;
       width: 1px;
       height: 1px;

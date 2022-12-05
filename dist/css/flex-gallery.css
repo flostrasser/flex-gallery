@@ -1,6 +1,7 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  gap: 1em;
 }
 .gallery:after {
   content: "";
@@ -11,7 +12,6 @@
 
 .gallery-item {
   flex-grow: 1;
-  margin: 0.5em;
   height: 200px;
   position: relative;
   cursor: pointer;

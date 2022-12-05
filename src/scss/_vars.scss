@@ -12,8 +12,8 @@ $icon-chevron-right-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" hei
 // --------------------------------
 // Gallery Settings
 // --------------------------------
+$gallery-gap: 1em !default;
 $gallery-item-height: 200px !default;
-$gallery-item-margin: 0.5em !default;
 $gallery-item-overlay-bg-color: rgba(#000, 0.4) !default;
 $gallery-item-overlay-bg-image: url(utils.svg-encode($icon-enlarge-svg)) !default;
 $gallery-item-overlay-bg: $gallery-item-overlay-bg-color $gallery-item-overlay-bg-image center / 1.85rem no-repeat !default;
