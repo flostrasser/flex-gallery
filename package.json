@@ -40,6 +40,8 @@
     "sass": "^1.56.1"
   },
   "scripts": {
-    "build-sass": "sass src/scss:dist/css"
+    "dev": "npm run watch:sass",
+    "watch:sass": "sass src/scss:dist/css --watch",
+    "build:sass": "sass src/scss:dist/css"
   }
 }
