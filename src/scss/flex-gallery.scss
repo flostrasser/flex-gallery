@@ -44,22 +44,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1em 0;
-    line-height: 1em;
+    padding: 1em;
     color: #fff;
+    font-size: 0.85em;
+    line-height: 1em;
     background-color: vars.$gallery-item-caption-bg-color;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     transform: translateY(100%);
     transition: transform 250ms;
     z-index: 20;
-
-    span {
-      display: inline-block;
-      max-width: calc(100% - 2em);
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      line-height: 1.3;
-    }
   }
 
   &:hover {
