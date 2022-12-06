@@ -5,9 +5,12 @@
 // --------------------------------
 $icon-enlarge-color: white !default;
 $icon-chevron-color: white !default;
-$icon-enlarge-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none"><path stroke="#{$icon-enlarge-color}" stroke-width="6" stroke-linecap="round" d="M23 23L34 34M26 14.5C26 20.8513 20.8513 26 14.5 26C8.14873 26 3 20.8513 3 14.5C3 8.14873 8.14873 3 14.5 3C20.8513 3 26 8.14873 26 14.5Z"/></svg>' !default;
-$icon-chevron-left-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="53" viewBox="0 0 32 53"><path fill="#{$icon-chevron-color}" fill-rule="evenodd" clip-rule="evenodd" d="M0 26.5L27.3171 0L32 4.54286L9.36585 26.5L32 48.4571L27.3171 53L0 26.5Z"/></svg>' !default;
-$icon-chevron-right-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="53" viewBox="0 0 32 53"><path fill="#{$icon-chevron-color}" fill-rule="evenodd" clip-rule="evenodd" d="M32 26.5L4.68293 53L0 48.4571L22.6341 26.5L3.83911e-06 4.54286L4.68293 0L32 26.5Z"/></svg>' !default;
+$icon-close-color: white !default;
+$icons-stroke-width: 2 !default;
+$icon-enlarge-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path stroke="#{$icon-enlarge-color}" stroke-width="#{$icons-stroke-width}" d="M27.2083 27.2267C28.9329 25.5068 30 23.128 30 20.5C30 15.2533 25.7467 11 20.5 11C15.2533 11 11 15.2533 11 20.5C11 25.7467 15.2533 30 20.5 30C23.1187 30 25.4899 28.9405 27.2083 27.2267ZM27.2083 27.2267L37 37.0183"/></svg>' !default;
+$icon-chevron-left-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path stroke="#{$icon-chevron-color}" stroke-width="#{$icons-stroke-width}" d="M32 43L16 24L32 5"/></svg>' !default;
+$icon-chevron-right-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path stroke="#{$icon-chevron-color}" stroke-width="#{$icons-stroke-width}" d="M16 43L32 24L16 5"/></svg>' !default;
+$icon-close-svg: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path stroke="#{$icon-close-color}" stroke-width="#{$icons-stroke-width}" d="M14 14L34 34M34 14L14 34"/></svg>' !default;
 
 // --------------------------------
 // Gallery Settings
@@ -16,9 +19,10 @@ $gallery-gap: 1em !default;
 $gallery-item-height: 100px !default;
 $gallery-item-height-sm: 150px !default;
 $gallery-item-height-lg: 200px !default;
+$gallery-item-border-radius: 0 !default;
 $gallery-item-overlay-bg-color: rgba(#000, 0.4) !default;
 $gallery-item-overlay-bg-image: url(utils.svg-encode($icon-enlarge-svg)) !default;
-$gallery-item-overlay-bg: $gallery-item-overlay-bg-color $gallery-item-overlay-bg-image center / 1.85rem no-repeat !default;
+$gallery-item-overlay-bg: $gallery-item-overlay-bg-color $gallery-item-overlay-bg-image center / 3rem no-repeat !default;
 $gallery-item-caption-bg-color: rgba(#000, 0.6) !default;
 $gallery-item-thumb-bg-color: #333 !default;
 
@@ -30,7 +34,8 @@ $lightbox-z-index: 9999 !default;
 $lightbox-text-color: white !default;
 $lightbox-close-color: white !default;
 $lightbox-header-bg-color: rgba(#000, 0.3) !default;
-$lightbox-header-padding: 1em !default;
-$lightbox-header-font-weight: 600 !default;
+$lightbox-header-padding: 0.5em !default;
+$lightbox-header-font-weight: 400 !default;
 $lightbox-arrow-left-bg-image: url(utils.svg-encode($icon-chevron-left-svg)) !default;
 $lightbox-arrow-right-bg-image: url(utils.svg-encode($icon-chevron-right-svg)) !default;
+$lightbox-close-bg-image: url(utils.svg-encode($icon-close-svg)) !default;
