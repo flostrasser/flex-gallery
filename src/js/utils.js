@@ -1,6 +1,3 @@
-// feature detection
-export const isSrcsetSupported = 'srcset' in new Image();
-
 export const createElement = (type, className, attributesObj) => {
   const element = document.createElement(type);
   if (Array.isArray(className)) {
@@ -35,21 +32,14 @@ export const loadThumbnail = target => {
   // create a temporary image
   const tempImage = new Image();
 
-  // set the src or srcset of the temp img to preload the actual image file
-  if (isSrcsetSupported && srcset) {
-    tempImage.srcset = srcset;
-  } else if (src) {
-    tempImage.src = src;
-  }
+  // set the src and srcset of the temp img to preload the actual image file
+  tempImage.srcset = srcset;
+  tempImage.src = src;
 
-  // when the temp image is loaded, set the src or srcset to the gallery thumb
+  // when the temp image is loaded, set the src and srcset to the gallery thumb
   tempImage.onload = () => {
-    if (tempImage.srcset) {
-      target.srcset = srcset;
-    } else if (src) {
-      target.src = src;
-    }
-
+    target.srcset = srcset;
+    target.src = src;
     target.classList.remove('placeholder');
   };
 };

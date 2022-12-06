@@ -296,7 +296,6 @@ function openLightbox(targetGallery, targetIndex) {
 
     const currentItem = {
       src: currentImageEl.dataset.image || currentImageEl.dataset.src,
-      srcFallback: currentImageEl.dataset.imageFallback,
       srcset: currentImageEl.dataset.imageSrcset,
       title: currentImageEl.dataset.title,
     };

@@ -26,7 +26,6 @@ npm install flex-gallery
       data-srcset="image-1.jpg 1x, image-1@2x.jpg 2x"
       data-image="image-1.jpg"
       data-image-srcset="image-1.jpg 500w, image-1@2x.jpg 1000w, image-1@3x.jpg 2000w"
-      data-image-fallback="image-1@2x.jpg"
       data-title="Image 1"
       alt="Image 1"
     />
@@ -41,7 +40,6 @@ npm install flex-gallery
       data-srcset="image-2.jpg 1x, image-2@2x.jpg 2x"
       data-image="image-2.jpg"
       data-image-srcset="image-2.jpg 500w, image-2@2x.jpg 1000w, image-2@3x.jpg 2000w"
-      data-image-fallback="image-2@2x.jpg"
       data-title="Image 2"
       alt="Image 2"
     />
@@ -50,15 +48,14 @@ npm install flex-gallery
 </div>
 ```
 
-| Attribute           | Description                                    |
-| ------------------- | ---------------------------------------------- |
-| src                 | Placeholder until data-src is lazy loaded      |
-| data-src            | Gallery item image                             |
-| data-srcset         | Gallery item srcset                            |
-| data-image          | Lightbox image                                 |
-| data-image-srcset   | Lightbox image srcset                          |
-| data-image-fallback | Lightbox image fallback for unsupported srcset |
-| data-title          | Title for the lightbox header                  |
+| Attribute         | Description                                |
+| ----------------- | ------------------------------------------ |
+| src               | Placeholder until data-src is lazy loaded  |
+| data-src          | Gallery item image                         |
+| data-srcset       | Gallery item srcset                        |
+| data-image        | Lightbox image                             |
+| data-image-srcset | Lightbox image srcset                      |
+| data-title        | Title for the lightbox header              |
 
 ### JS:
 
