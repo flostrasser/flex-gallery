@@ -21,7 +21,6 @@ let options = {};
 
 // lightbox variables
 let lightbox;
-let lightboxWrapper;
 let images = [];
 let currentIndex = 0;
 let wasSwiping = false;
@@ -107,7 +106,7 @@ function resetSlide() {
 function closeLightbox() {
   const lightboxImages = lightbox.querySelectorAll('.lightbox-image');
   // fade out
-  fadeOut(lightboxWrapper).then(() => {
+  fadeOut(lightbox).then(() => {
     lightboxImages.forEach(image => {
       image.src = '';
     });
@@ -279,7 +278,7 @@ function initSlides() {
 }
 
 function openLightbox(currentGallery, targetIndex) {
-  fadeIn(lightbox.parentNode);
+  fadeIn(lightbox, 'flex');
 
   images = [];
   currentGallery.querySelectorAll('.gallery-item').forEach(element => {
@@ -306,10 +305,9 @@ function openLightbox(currentGallery, targetIndex) {
 // ------------------------------ //
 function createLightbox() {
   // lightbox & wrapper
-  lightboxWrapper =
-    document.querySelector('.lightbox-wrapper') || createElement('div', 'lightbox-wrapper');
-  removeChildren(lightboxWrapper);
-  lightbox = createElement('div', 'lightbox');
+  lightbox =
+    document.querySelector('.lightbox') || createElement('div', 'lightbox', { hidden: true });
+  removeChildren(lightbox);
 
   // Header
   const lightboxHeader = createElement('div', 'lightbox-header');
@@ -362,8 +360,7 @@ function createLightbox() {
   lightbox.append(lightboxFooter);
 
   // append lightbox to body
-  lightboxWrapper.append(lightbox);
-  document.body.append(lightboxWrapper);
+  document.body.append(lightbox);
 }
 
 // uses progressive image loading

@@ -97,8 +97,11 @@
 // --------------------------------
 // Lightbox
 // --------------------------------
-.lightbox-wrapper {
-  display: none;
+.lightbox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: vars.$lightbox-text-color;
   background-color: vars.$lightbox-bg-color;
   position: fixed;
   top: 0;
@@ -107,12 +110,6 @@
   right: 0;
   z-index: vars.$lightbox-z-index;
 }
-
-.lightbox {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  color: vars.$lightbox-text-color;
 
   .lightbox-header {
     flex-shrink: 0;
