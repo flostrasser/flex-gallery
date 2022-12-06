@@ -1,6 +1,5 @@
 import {
   getLoopedIndex,
-  loadImage,
   loadThumbnail,
   removeChildren,
   createElement,
@@ -8,6 +7,8 @@ import {
   fadeOut,
   mapRange,
 } from './utils.js';
+
+import { loadImage } from './helpers.js';
 
 // options
 const DEFAULT_OPTIONS = {
