@@ -348,11 +348,10 @@ function createLightbox() {
   nextSlide.append(lightboxImage.cloneNode());
 
   // Loading Spinner
-  const spinner =
-    '<div class="lightbox-spinner" role="status" hidden><span>Loading...</span></div>';
-  currentSlide.insertAdjacentHTML('beforeend', spinner);
-  prevSlide.insertAdjacentHTML('beforeend', spinner);
-  nextSlide.insertAdjacentHTML('beforeend', spinner);
+  const spinner = createElement('div', 'lightbox-spinner', { role: 'status', hidden: true });
+  currentSlide.append(spinner);
+  prevSlide.append(spinner.cloneNode());
+  nextSlide.append(spinner.cloneNode());
 
   // Arrows
   lightbox.insertAdjacentHTML('beforeend', '<div class="lightbox-arrow arrow-left"></div>');
