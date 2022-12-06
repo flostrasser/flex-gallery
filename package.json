@@ -29,9 +29,6 @@
   },
   "homepage": "https://github.com/flostrasser/flex-gallery#readme",
   "devDependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.20.5",
-    "@babel/preset-env": "^7.20.2",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.29.0",
@@ -43,8 +40,6 @@
     "sass": "^1.56.1"
   },
   "scripts": {
-    "build": "npm run build-js && npm run build-sass",
-    "build-js": "babel src -d dist --presets=@babel/preset-env",
     "build-sass": "sass src/scss:dist/css"
   }
 }
