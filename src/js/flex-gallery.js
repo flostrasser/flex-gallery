@@ -367,9 +367,17 @@ function createLightbox() {
   prevSlide.append(spinner.cloneNode());
   nextSlide.append(spinner.cloneNode());
 
-  // Arrows
-  lightbox.insertAdjacentHTML('beforeend', '<div class="lightbox-arrow arrow-left"></div>');
-  lightbox.insertAdjacentHTML('beforeend', '<div class="lightbox-arrow arrow-right"></div>');
+  // create arrows
+  const arrowLeftBtn = createElement('button', ['lightbox-arrow', 'arrow-left'], {
+    type: 'button',
+    'aria-label': 'Previous Slide',
+  });
+  const arrowRightBtn = createElement('button', ['lightbox-arrow', 'arrow-right'], {
+    type: 'button',
+    'aria-label': 'Next Slide',
+  });
+  lightbox.append(arrowLeftBtn);
+  lightbox.append(arrowRightBtn);
 
   // Footer
   const lightboxFooter = createElement('div', 'lightbox-footer');
@@ -419,6 +427,16 @@ const createGallery = () => {
         const itemIndex = Array.from(currentGalleryItems).indexOf(e.currentTarget);
         openLightbox(gallery, itemIndex);
         initSlides();
+      });
+
+      // open lightbox when pressing enter on the gallery item
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const itemIndex = Array.from(currentGalleryItems).indexOf(e.currentTarget);
+          openLightbox(gallery, itemIndex);
+          initSlides();
+        }
       });
     });
   });
