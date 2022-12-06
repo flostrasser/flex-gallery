@@ -30,9 +30,7 @@ export const getLoopedIndex = (array, index) => {
 
 export const loadThumbnail = target => {
   // get the src and srcset from the dataset of the gallery thumb
-  const {
-    dataset: { src, srcset },
-  } = target;
+  const { src, srcset } = target.dataset;
 
   // create a temporary image
   const tempImage = new Image();
@@ -90,6 +88,57 @@ export const fadeOut = (element, ms = 200) => {
     }, 50);
   });
 };
+
+/**
+ * Traps focus inside a target element.
+ * @param {Element} targetEl
+ * @param {Element} initialFocusEl
+ * @returns {{reset: Function}} - Object with a reset function
+ */
+export function trapFocus(targetEl, initialFocusEl) {
+  const selectors = [
+    'a[href]:not([disabled])',
+    'button:not([disabled])',
+    'textarea:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+  ];
+
+  const focusableEls = targetEl.querySelectorAll(selectors.join(', '));
+  const firstFocusableEl = focusableEls[0];
+  const lastFocusableEl = focusableEls[focusableEls.length - 1];
+
+  if (initialFocusEl instanceof HTMLElement) {
+    initialFocusEl.focus();
+  }
+
+  const tabKeyHandler = e => {
+    if (e.key !== 'Tab') return;
+
+    if (e.shiftKey) {
+      // shift + tab
+      if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl.focus();
+        e.preventDefault();
+      }
+    } else if (document.activeElement === lastFocusableEl) {
+      firstFocusableEl.focus();
+      e.preventDefault();
+    }
+  };
+
+  targetEl.addEventListener('keydown', tabKeyHandler);
+
+  return {
+    reset: newFocusTarget => {
+      targetEl.removeEventListener('keydown', tabKeyHandler);
+
+      if (newFocusTarget instanceof HTMLElement) {
+        newFocusTarget.focus();
+      }
+    },
+  };
+}
 
 // Re-maps a number from one range to another.
 export const mapRange = (value, fromIn, toIn, fromOut, toOut) => {

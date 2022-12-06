@@ -6,6 +6,7 @@ import {
   fadeIn,
   fadeOut,
   mapRange,
+  trapFocus,
 } from './utils.js';
 
 import { loadImage } from './helpers.js';
@@ -18,6 +19,9 @@ const DEFAULT_OPTIONS = {
 };
 
 let options = {};
+
+// gallery variables
+let currentGallery = null;
 
 // lightbox variables
 let lightbox;
@@ -32,6 +36,8 @@ let nextSlide;
 let distance = 0;
 let startPos = 0;
 let slideWidth = 0;
+
+let focusTrap = {};
 
 function showInitialImage(index) {
   prevSlide = lightbox.querySelector('.lightbox-slide[data-state="prev"]');
@@ -113,6 +119,9 @@ function closeLightbox() {
     lightboxImages.forEach(image => {
       image.srcset = '';
     });
+
+    // reset focus trap and set focus back to relatedTarget
+    focusTrap.reset(currentGallery.querySelectorAll('.gallery-item')[currentIndex]);
   });
 }
 
@@ -277,11 +286,12 @@ function initSlides() {
   addLightboxEventListeners();
 }
 
-function openLightbox(currentGallery, targetIndex) {
+function openLightbox(targetGallery, targetIndex) {
+  currentGallery = targetGallery;
   fadeIn(lightbox, 'flex');
 
   images = [];
-  currentGallery.querySelectorAll('.gallery-item').forEach(element => {
+  targetGallery.querySelectorAll('.gallery-item').forEach(element => {
     const currentImageEl = element.querySelector('img');
 
     const currentItem = {
@@ -293,6 +303,12 @@ function openLightbox(currentGallery, targetIndex) {
 
     images.push(currentItem);
   });
+
+  // get close button
+  const closeButton = lightbox.querySelector('.lightbox-close');
+
+  // trap focus in lightbox and set focus on close button
+  focusTrap = trapFocus(lightbox, closeButton);
 
   currentIndex = targetIndex;
   showInitialImage(targetIndex);
@@ -394,13 +410,17 @@ const createGallery = () => {
   galleries.forEach(gallery => {
     const currentGalleryItems = gallery.querySelectorAll('.gallery-item');
 
-    currentGalleryItems.forEach(item =>
+    currentGalleryItems.forEach(item => {
+      // set tab index to make gallery item focusable
+      item.tabIndex = 0;
+
+      // open lightbox when clicking on the gallery item
       item.addEventListener('click', e => {
         const itemIndex = Array.from(currentGalleryItems).indexOf(e.currentTarget);
         openLightbox(gallery, itemIndex);
         initSlides();
-      })
-    );
+      });
+    });
   });
 };
 
