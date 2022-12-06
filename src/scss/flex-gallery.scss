@@ -1,6 +1,11 @@
 @forward "vars";
 @use "vars";
 
+$breakpoints: (
+  sm: 640px,
+  lg: 1024px,
+);
+
 // --------------------------------
 // Gallery
 // --------------------------------
@@ -15,6 +20,14 @@
     flex-grow: 9999999;
     min-width: vars.$gallery-item-height;
     height: 0;
+
+    @media (min-width: map-get($breakpoints, sm)) {
+      min-width: vars.$gallery-item-height-sm;
+    }
+
+    @media (min-width: map-get($breakpoints, lg)) {
+      min-width: vars.$gallery-item-height-lg;
+    }
   }
 }
 
@@ -24,6 +37,14 @@
   position: relative;
   cursor: pointer;
   overflow: hidden;
+
+  @media (min-width: map-get($breakpoints, sm)) {
+    height: vars.$gallery-item-height-sm;
+  }
+
+  @media (min-width: map-get($breakpoints, lg)) {
+    height: vars.$gallery-item-height-lg;
+  }
 
   &::after {
     content: "";
