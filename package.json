@@ -42,7 +42,7 @@
     "sass": "^1.56.1"
   },
   "scripts": {
-    "dev": "npm run watch:sass",
+    "dev": "npm run watch:sass & npx serve",
     "watch:sass": "sass src/scss:dist/css --watch",
     "build:sass": "sass src/scss:dist/css",
     "lint": "eslint ./",
