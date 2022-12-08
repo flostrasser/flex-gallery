@@ -36,12 +36,19 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.0",
     "sass": "^1.56.1"
   },
   "scripts": {
     "dev": "npm run watch:sass",
     "watch:sass": "sass src/scss:dist/css --watch",
-    "build:sass": "sass src/scss:dist/css"
+    "build:sass": "sass src/scss:dist/css",
+    "lint": "eslint ./",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix"
   }
 }
