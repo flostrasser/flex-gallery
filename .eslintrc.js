@@ -16,6 +16,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    'no-console': 'warn',
     'no-param-reassign': ['error', { props: false }],
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',

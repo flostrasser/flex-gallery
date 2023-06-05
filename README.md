@@ -20,7 +20,7 @@ npm install flex-gallery
 <div class="gallery">
   <div class="gallery-item">
     <img
-      class="thumb placeholder"
+      class="gallery-thumb placeholder"
       src="image-1@placeholder.jpg"
       data-src="image-1.jpg"
       data-srcset="image-1.jpg 1x, image-1@2x.jpg 2x"
@@ -34,7 +34,7 @@ npm install flex-gallery
 
   <div class="gallery-item">
     <img
-      class="thumb placeholder"
+      class="gallery-thumb placeholder"
       src="image-2@placeholder.jpg"
       data-src="image-2.jpg"
       data-srcset="image-2.jpg 1x, image-2@2x.jpg 2x"
