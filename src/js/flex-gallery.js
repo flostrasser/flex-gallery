@@ -67,7 +67,6 @@ function handleSlideMove(event) {
 
   // move current slide and adjust opacity
   currentSlide.style.transform = `translateX(${distance}px)`;
-  // eslint-disable-next-line prettier/prettier
   currentSlide.style.opacity = mapRange(Math.abs(distance), 0, slideWidth, 1, 0);
 
   // TODO: reset slide if (currentPos > slideWidth || currentPos < 0)   (not sure if necessary)

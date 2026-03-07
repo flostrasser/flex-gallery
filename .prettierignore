@@ -1,2 +1,4 @@
 *.scss
 *.md
+pnpm-lock.yaml
+dist
