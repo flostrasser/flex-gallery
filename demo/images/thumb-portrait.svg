@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 15 20" role="img"
+  aria-label="Portrait thumbnail">
+  <rect width="15" height="20" fill="#d0f0ee" />
+  <rect x="1" y="1" width="13" height="18" fill="none" stroke="#ab4c1f" stroke-width="0.8" />
+</svg>

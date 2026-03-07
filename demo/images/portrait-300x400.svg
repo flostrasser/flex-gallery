@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400" role="img"
+  aria-label="Portrait 300x400">
+  <rect width="300" height="400" fill="#d0f0ee" />
+  <text x="150" y="210" text-anchor="middle" font-size="28" font-family="sans-serif" fill="#15928a">
+    300x400</text>
+</svg>

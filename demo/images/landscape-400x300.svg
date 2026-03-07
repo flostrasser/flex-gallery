@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" role="img"
+  aria-label="Landscape 400x300">
+  <rect width="400" height="300" fill="#d0f0ee" />
+  <text x="200" y="160" text-anchor="middle" font-size="28" font-family="sans-serif" fill="#15928a">
+    400x300</text>
+</svg>
