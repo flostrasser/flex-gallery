@@ -38,6 +38,7 @@ let startPos = 0;
 let slideWidth = 0;
 
 let focusTrap = {};
+let updateLightbox = () => {};
 
 function showInitialImage(index) {
   prevSlide = lightbox.querySelector('.lightbox-slide[data-state="prev"]');
@@ -101,6 +102,18 @@ function showPrevSlide() {
   transformSlide(prevSlide, '0px', 1);
   transformSlide(currentSlide, '100%', 0);
   transformSlide(nextSlide, '-100%', 0);
+}
+
+// left arrow 'click' event handler
+function handleClickLeftArrow() {
+  showPrevSlide();
+  updateLightbox('prev');
+}
+
+// right arrow 'click' event handler
+function handleClickRightArrow() {
+  showNextSlide();
+  updateLightbox('next');
 }
 
 function resetSlide() {
@@ -212,7 +225,7 @@ function addSlideEventListeners() {
     .addEventListener('click', handleClickRightArrow);
 }
 
-function updateLightbox(newSlide) {
+updateLightbox = newSlide => {
   if (newSlide !== 'current') removeSlideEventListeners();
 
   setTimeout(() => {
@@ -247,7 +260,7 @@ function updateLightbox(newSlide) {
 
     currentIndex = index;
   }, options.transitionDuration);
-}
+};
 
 // slide 'click' event handler
 function handleSlideClick(event) {
@@ -266,18 +279,6 @@ function addLightboxEventListeners() {
   // close lightbox when clicking on close button
   const closeBtn = lightbox.querySelector('.lightbox-close');
   closeBtn.addEventListener('click', closeLightbox);
-}
-
-// left arrow 'click' event handler
-function handleClickLeftArrow() {
-  showPrevSlide();
-  updateLightbox('prev');
-}
-
-// right arrow 'click' event handler
-function handleClickRightArrow() {
-  showNextSlide();
-  updateLightbox('next');
 }
 
 function initSlides() {
