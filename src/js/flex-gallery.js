@@ -146,6 +146,7 @@ function handleLightboxKeyDown(event) {
     showNextSlide();
     updateLightbox('next');
   } else if (event.key === 'Escape') {
+    event.preventDefault();
     closeLightbox();
     // remove 'keydown' event handler from document element
     document.documentElement.removeEventListener('keydown', handleLightboxKeyDown);
