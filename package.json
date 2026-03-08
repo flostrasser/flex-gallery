@@ -6,11 +6,10 @@
   "module": "./src/js/flex-gallery.js",
   "exports": {
     "import": "./src/js/flex-gallery.js",
-    "sass": "./src/scss/flex-gallery.scss",
-    "style": "./dist/css/flex-gallery.css",
+    "style": "./src/css/flex-gallery.css",
     "default": "./src/js/flex-gallery.js"
   },
-  "style": "./dist/css/flex-gallery.css",
+  "style": "./src/css/flex-gallery.css",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flostrasser/flex-gallery.git"
@@ -37,13 +36,10 @@
     "globals": "^17.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.3.2",
-    "prettier": "^3.8.1",
-    "sass": "^1.58.3"
+    "prettier": "^3.8.1"
   },
   "scripts": {
-    "dev": "npm run watch:sass & npx serve",
-    "watch:sass": "sass src/scss:dist/css --watch",
-    "build:sass": "sass src/scss:dist/css",
+    "dev": "pnpm exec serve",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "prepare": "husky"
