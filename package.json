@@ -4,6 +4,12 @@
   "description": "A responsive lightbox gallery with flexbox and progressive image loading.",
   "type": "module",
   "module": "./src/js/flex-gallery.js",
+  "files": [
+    "src/js",
+    "src/css",
+    "README.md",
+    "LICENSE"
+  ],
   "exports": {
     "import": "./src/js/flex-gallery.js",
     "style": "./src/css/flex-gallery.css",
