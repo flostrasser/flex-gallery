@@ -1,0 +1,5 @@
+minimumReleaseAge: 2880 # 48h
+
+# Fail installs if a package's publish trust weakens between versions
+# (e.g. previously had provenance/trusted publisher, no longer does).
+trustPolicy: no-downgrade
